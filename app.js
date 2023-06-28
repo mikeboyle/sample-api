@@ -9,7 +9,17 @@ app.get('/', (request, response) => {
 });
 
 app.get('/double/:number', (request, response) => {
-  response.status(500).json({ error: 'Route not implemented' });
+  try {
+    const { number } = request.params;
+    const num = Number(number);
+    if (Number.isNaN(num)) {
+      throw new Error(`${number} is not a number!`);
+    }
+
+    response.status(200).json({ data: { number, result: number * 2 } });
+  } catch (err) {
+    response.status(500).json({ error: error.message });
+  }
 });
 
 module.exports = app;
