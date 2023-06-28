@@ -18,7 +18,7 @@ app.get('/double/:number', (request, response) => {
 
     response.status(200).json({ data: { number, result: number * 2 } });
   } catch (err) {
-    response.status(500).json({ error: error.message });
+    response.status(500).json({ error: err.message });
   }
 });
 
