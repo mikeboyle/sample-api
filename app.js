@@ -13,7 +13,7 @@ app.get('/double/:number', (request, response) => {
     const { number } = request.params;
     const num = Number(number);
     if (Number.isNaN(num)) {
-      throw new Error(`${number} is not a number!`);
+      return response.status(400).json({ error: `${number} is not a number!` });
     }
 
     response.status(200).json({ data: { number, result: number * 2 } });
